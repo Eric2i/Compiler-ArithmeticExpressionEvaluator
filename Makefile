@@ -7,11 +7,17 @@ SRCDIR=src
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-$(BINDIR)/run: $(OBJDIR)/test.o $(OBJDIR)/Expression.o
+$(BINDIR)/tester: $(OBJDIR)/test.o $(OBJDIR)/Expression.o
+	$(CC) -o $@ $^
+	
+$(BINDIR)/evaluator: $(OBJDIR)/main.o $(OBJDIR)/Expression.o
 	$(CC) -o $@ $^
 
-test: $(BINDIR)/run
-	$(BINDIR)/run
+test: $(BINDIR)/tester
+	$(BINDIR)/tester
+
+build: $(BINDIR)/evaluator
+	# $(BINDIR)/evaluator
 
 clean:
 	rm -rf $(OBJDIR)/*

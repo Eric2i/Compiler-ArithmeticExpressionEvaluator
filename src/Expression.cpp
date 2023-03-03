@@ -141,5 +141,10 @@ float Expression::EvaluatePostfix() {
 float Expression::Evaluate() {
     this->Tokenize();
     this->transform();
-    return this->EvaluatePostfix();
+    try{
+        return this->EvaluatePostfix();
+    } catch (std::runtime_error &e) {
+        std::cerr << e.what() << " ";
+        return INFINITY;
+    }
 }
