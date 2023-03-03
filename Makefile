@@ -7,7 +7,7 @@ SRCDIR=src
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-$(BINDIR)/run: $(OBJDIR)/test.o
+$(BINDIR)/run: $(OBJDIR)/test.o $(OBJDIR)/Expression.o
 	$(CC) -o $@ $^
 
 test: $(BINDIR)/run
